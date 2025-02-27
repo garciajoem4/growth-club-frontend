@@ -28,8 +28,8 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 
 
-ENV PORT=80
-EXPOSE 80
+ENV PORT=3000
+EXPOSE 3000
 
 
 ENV NEXT_TELEMETRY_DISABLED 1
