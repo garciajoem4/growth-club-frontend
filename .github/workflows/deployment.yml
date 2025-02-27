@@ -16,7 +16,7 @@ jobs:
         run: docker build -t growth-club-docker-frontend .
         
       - name: Login to docker hub
-        run: docker login -u garciajoem4@gmail.com -p 52h3;F4#dh!@ZCt
+        run: docker login -u "garciajoem4@gmail.com" -p "52h3;F4#dh!@ZCt"
 
       - name: Publich docker image to docker hub
         run: docker push growth-club-docker-frontend:latest
