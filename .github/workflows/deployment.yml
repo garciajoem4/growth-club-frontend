@@ -13,23 +13,23 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build docker image
-        run: docker build -t growth-club-docker-frontend .
+        run: docker build -t 447728/growth-club-docker-frontend .
         
       - name: Login to docker hub
         run: docker login -u "garciajoem4@gmail.com" -p "52h3;F4#dh!@ZCt"
 
       - name: Publich docker image to docker hub
-        run: docker push growth-club-docker-frontend:latest
+        run: docker push 447728/growth-club-docker-frontend:latest
 
   deploy:
     needs: build
     runs-on: self-hosted
     steps:
       - name: Pull image from docker hub
-        run: docker pull growth-club-docker-frontend:latest
+        run: docker pull 447728/growth-club-docker-frontend:latest
 
       - name: Delete old docker container
         run: docker rm -f growth-club
         
       - name: Run docker container
-        run: docker run -d- p 3000:3000 --name growth-club growth-club-docker-frontend
+        run: docker run -d- p 3000:3000 --name growth-club 447728/growth-club-docker-frontend
