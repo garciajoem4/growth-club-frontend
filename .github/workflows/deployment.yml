@@ -32,4 +32,4 @@ jobs:
         run: docker rm -f growth-club
         
       - name: Run docker container
-        run: docker run -d -p 3000:3000 --name growth-club 447728/growth-club-docker-frontend
+        run: docker run -d -p 80:3000 --name growth-club 447728/growth-club-docker-frontend
