@@ -30,6 +30,11 @@ jobs:
 
       - name: Delete old docker container
         run: docker rm -f growth-club
+
+      - name: Remove unused images
+        run: |
+          docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+          alias drmae='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
         
       - name: Run docker container
         run: docker run -d -p 3000:3000 --name growth-club 447728/growth-club-docker-frontend
