@@ -1,34 +1,16 @@
-FROM node:21-alpine AS deps
-
-RUN apk add --no-cache libc6-compat
-WORKDIR /app
-COPY package.json ./
-RUN npm install --frozen-lockfile
-
-
+# Build stage
 FROM node:21-alpine AS builder
 WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
 COPY . .
-COPY --from=deps /app/node_modules ./node_modules
-RUN export NODE_OPTIONS=--openssl-legacy-provider && npm run build && npm install --production --ignore-scripts --prefer-offline
+RUN npm run build
 
+# Production image (static file server)
+FROM nginx:alpine AS runner
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-FROM node:21-alpine AS runner
-WORKDIR /app
-
-ENV NODE_ENV production
-
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
-
-COPY --from=builder --chown=nextjs:nodejs /app/dist ./dist
-COPY --from=builder /app/ .
-# COPY --from=builder /app/src ./src
-# COPY --from=builder /app/node_modules ./node_modules
-# COPY --from=builder /app/package.json ./package.json
-
-ENV PORT=3000
 EXPOSE 3000
-
-ENV NEXT_TELEMETRY_DISABLED 1
-CMD ["npm", "run", "build"]
+CMD ["nginx", "-g", "daemon off;"]
