@@ -16,16 +16,16 @@ function useColumnTasks(column: ColumnType) {
   const addEmptyTask = useCallback(() => {
     debug(`Adding new empty task to ${column} column`);
     setTasks((allTasks) => {
-      const columnTasks = allTasks[column];
+      const columnTasks = allTasks[column] || [];
 
-      if (columnTasks.length > MAX_TASK_PER_COLUMN) {
+      if (columnTasks?.length > MAX_TASK_PER_COLUMN) {
         debug('Too many task!');
         return allTasks;
       }
 
       const newColumnTask: TaskModel = {
         id: uuidv4(),
-        title: `New ${column} task`,
+        title: `Add Description`,
         color: pickChakraRandomColor('.300'),
         column,
       };

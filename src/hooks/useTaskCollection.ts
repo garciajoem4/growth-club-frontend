@@ -8,34 +8,34 @@ function useTaskCollection() {
   return useLocalStorage<{
     [key in ColumnType]: TaskModel[];
   }>('tasks', {
-    Todo: [
+    SEGMENT: [
       {
         id: uuidv4(),
-        column: ColumnType.TO_DO,
+        column: ColumnType.SEGMENT,
         title: 'Task 1',
         color: 'blue.300',
       },
     ],
-    'In Progress': [
+    JOBS: [
       {
         id: uuidv4(),
-        column: ColumnType.IN_PROGRESS,
+        column: ColumnType.JOBS,
         title: 'Task 2',
         color: 'yellow.300',
       },
     ],
-    Blocked: [
+    PAINS: [
       {
         id: uuidv4(),
-        column: ColumnType.BLOCKED,
+        column: ColumnType.PAINS,
         title: 'Task 3',
         color: 'red.300',
       },
     ],
-    Completed: [
+    GAINS: [
       {
         id: uuidv4(),
-        column: ColumnType.COMPLETED,
+        column: ColumnType.GAINS,
         title: 'Task 4',
         color: 'green.300',
       },

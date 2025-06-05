@@ -13,10 +13,10 @@ import { ColumnType } from '../utils/enums';
 import Task from './Task';
 
 const ColumnColorScheme: Record<ColumnType, string> = {
-  Todo: 'gray',
-  'In Progress': 'blue',
-  Blocked: 'red',
-  Completed: 'green',
+  SEGMENT: 'gray',
+  JOBS: 'blue',
+  PAINS: 'red',
+  GAINS: 'green',
 };
 
 function Column({ column }: { column: ColumnType }) {
@@ -31,7 +31,7 @@ function Column({ column }: { column: ColumnType }) {
 
   const { dropRef, isOver } = useColumnDrop(column, dropTaskFrom);
 
-  const ColumnTasks = tasks.map((task, index) => (
+  const ColumnTasks = tasks?.map((task, index) => (
     <Task
       key={task.id}
       task={task}
