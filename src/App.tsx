@@ -3,13 +3,11 @@ import { Container, Heading, SimpleGrid } from '@chakra-ui/react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Column from './components/Column';
-// import DarkModeIconButton from './components/DarkModeIconButton';
 import { ColumnType } from './utils/enums';
 
 function App() {
   return (
     <main>
-      {/* <DarkModeIconButton position="absolute" top={0} right={2} /> */}
       <DndProvider backend={HTML5Backend}>
         <Container maxWidth="container.lg" px={4} py={10}>
           <SimpleGrid
