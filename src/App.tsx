@@ -3,7 +3,7 @@ import { Container, Heading, SimpleGrid } from '@chakra-ui/react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Column from './components/Column';
-import DarkModeIconButton from './components/DarkModeIconButton';
+// import DarkModeIconButton from './components/DarkModeIconButton';
 import { ColumnType } from './utils/enums';
 
 function App() {
